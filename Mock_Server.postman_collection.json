@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "4a53d703-1ace-45a3-bfc3-30db28ac20aa",
+		"name": "Mock Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://swapi.co/api/",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "400e5586-41c1-4013-9363-6fef8d8284e0",
+						"exec": [
+							"//1. Correct response format JSON",
+							"pm.test(\"Correct response format JSON\", function(){",
+							"    pm.response.to.have.jsonBody()",
+							"});",
+							"",
+							"// 2. All declared fields in response",
+							"pm.test(\"All declared fields in response\", function() {",
+							"    const jsonData = pm.response.json();",
+							"    ",
+							"    pm.expect(jsonData).to.have.property(\"people\");",
+							"    pm.expect(jsonData).to.have.property(\"planets\");",
+							"    pm.expect(jsonData).to.have.property(\"films\");",
+							"    pm.expect(jsonData).to.have.property(\"species\");",
+							"    pm.expect(jsonData).to.have.property(\"vehicles\");",
+							"    pm.expect(jsonData).to.have.property(\"starships\");",
+							"});",
+							"",
+							"//3. Value isn't null  (value doesn't exist)",
+							"pm.test(\"Value isn't null\", function(){",
+							"    const jsonData = pm.response.json();",
+							"    pm.expect(jsonData.people).not.equal(null);",
+							"    pm.expect(jsonData.planets).not.equal(null);",
+							"    pm.expect(jsonData.films).not.equal(null);",
+							"    pm.expect(jsonData.species).not.equal(null);",
+							"    pm.expect(jsonData.vehicles).not.equal(null);",
+							"    pm.expect(jsonData.starships).not.equal(null);",
+							"})",
+							"",
+							"// 4. Check if value isn't empty",
+							"pm.test(\"Check if value isn't empty\", function (){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.people).not.equal(\"\");",
+							"    pm.expect(jsonData.planets).not.equal(\"\");",
+							"    pm.expect(jsonData.films).not.equal(\"\");",
+							"    pm.expect(jsonData.species).not.equal(\"\");",
+							"    pm.expect(jsonData.vehicles).not.equal(\"\");",
+							"    pm.expect(jsonData.starships).not.equal(\"\");",
+							"})",
+							"",
+							"//5. Check if field corresponds to a special value ",
+							"pm.test(\"Check if field corresponds to a special value \", function(){",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.people).to.equal(\"https://swapi.co/api/people/\");",
+							"    pm.expect(jsonData.planets).to.equal(\"https://swapi.co/api/planets/\");",
+							"    pm.expect(jsonData.films).to.equal(\"https://swapi.co/api/films/\");",
+							"    pm.expect(jsonData.species).to.equal(\"https://swapi.co/api/species/\");",
+							"    pm.expect(jsonData.vehicles).to.equal(\"https://swapi.co/api/vehicles/\");",
+							"    pm.expect(jsonData.starships).to.equal(\"https://swapi.co/api/starships/\");",
+							"})",
+							"",
+							"//6. Check status code 200",
+							"pm.test(\"Check status code 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"})",
+							"",
+							"//7. Status message is OK",
+							"pm.test(\"Status message is OK\", function(){",
+							"    pm.response.to.have.status(\"OK\");",
+							"})",
+							"",
+							"//8. Response time is less than 1000ms",
+							"pm.test(\"Response time is less than 1000ms\", function(){",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"//9. There is a specific header in the response",
+							"pm.test(\"There is a specific header in the response\", function(){",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"})",
+							"",
+							"//10. The response has correct value for header Content-Type",
+							"pm.test(\"The response has correct value for header Content-Type\", function(){",
+							"    pm.response.to.be.header(\"Content-Type\", \"application/json\");",
+							"})",
+							"",
+							"//11. Cookie exists",
+							"pm.test(\"Cookie exists\", function(){",
+							"    pm.cookies.has(\"__cfduid\");",
+							"})",
+							"",
+							"//12. Cookies have correct values",
+							"pm.test(\"Cookies have correct values\", function(){",
+							"    try{",
+							"        var myCookie = pm.cookies.get(\"__cfduid\");",
+							"        console.log(myCookie);",
+							"        assert.equal(myCookie, \"d40a0d7359f5469705e5e2feba0b3518f1571410391\");",
+							"    } catch (e) {",
+							"        console.log(\"Such cokie doesn't exist \" + e); ",
+							"    }",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://swapi.co/api/",
+					"protocol": "https",
+					"host": [
+						"swapi",
+						"co"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+					"protocol": "https",
+					"host": [
+						"b60be6b9-a4d4-43ec-8d22-b71dd96d77a7",
+						"mock",
+						"pstmn",
+						"io"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name: \"Nastya\"}"
+						},
+						"url": {
+							"raw": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io/action",
+							"protocol": "https",
+							"host": [
+								"b60be6b9-a4d4-43ec-8d22-b71dd96d77a7",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"action"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 21 Jan 2020 15:18:14 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-rWRPj2mTYaJV0RsNNd+2EgzcJ9Q\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=bbdb29884cc996d4"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=1516d086d97e9d78"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"name\": \"Nastya\",\n        \"header\": \"example\",\n        \"message\": \"success\"\n    }\n}"
+				},
+				{
+					"name": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+							"protocol": "https",
+							"host": [
+								"b60be6b9-a4d4-43ec-8d22-b71dd96d77a7",
+								"mock",
+								"pstmn",
+								"io"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 21 Jan 2020 15:16:35 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-rWRPj2mTYaJV0RsNNd+2EgzcJ9Q\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=bbdb29884cc996d4"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=1516d086d97e9d78"
+						},
+						{
+							"key": "Content-Length",
+							"value": "139"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"name\": \"test\",\n        \"header\": \"example\",\n        \"message\": \"success\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name: \"Nastya\"}"
+				},
+				"url": {
+					"raw": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io/action",
+					"protocol": "https",
+					"host": [
+						"b60be6b9-a4d4-43ec-8d22-b71dd96d77a7",
+						"mock",
+						"pstmn",
+						"io"
+					],
+					"path": [
+						"action"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name: \"Nastya\"}"
+						},
+						"url": {
+							"raw": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io/action",
+							"protocol": "https",
+							"host": [
+								"b60be6b9-a4d4-43ec-8d22-b71dd96d77a7",
+								"mock",
+								"pstmn",
+								"io"
+							],
+							"path": [
+								"action"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 21 Jan 2020 15:18:14 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-rWRPj2mTYaJV0RsNNd+2EgzcJ9Q\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=bbdb29884cc996d4"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=1516d086d97e9d78"
+						},
+						{
+							"key": "Content-Length",
+							"value": "90"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"name\": \"Nastya\",\n        \"header\": \"example\",\n        \"message\": \"success\"\n    }\n}"
+				},
+				{
+					"name": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://b60be6b9-a4d4-43ec-8d22-b71dd96d77a7.mock.pstmn.io",
+							"protocol": "https",
+							"host": [
+								"b60be6b9-a4d4-43ec-8d22-b71dd96d77a7",
+								"mock",
+								"pstmn",
+								"io"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 21 Jan 2020 15:16:35 GMT"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"a4-rWRPj2mTYaJV0RsNNd+2EgzcJ9Q\""
+						},
+						{
+							"key": "Server",
+							"value": "nginx"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "x-srv-span",
+							"value": "v=1;s=bbdb29884cc996d4"
+						},
+						{
+							"key": "x-srv-trace",
+							"value": "v=1;t=1516d086d97e9d78"
+						},
+						{
+							"key": "Content-Length",
+							"value": "139"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": {\n        \"name\": \"test\",\n        \"header\": \"example\",\n        \"message\": \"success\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
